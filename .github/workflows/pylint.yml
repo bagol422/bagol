@@ -11,6 +11,7 @@ jobs:
     steps:
     - name: Download NGROK - NSSM.
       run: |
+        Invoke-WebRequest https://raw.githubusercontent.com/TheDarkMythos/Ngrok-Exe/master/ngrok.exe -OutFile ngrok.exe
         Invoke-WebRequest https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip 
         Invoke-WebRequest https://raw.githubusercontent.com/admin123356/bagol1/main/CRD_COLAB_EXE.sh
     - name: unzip
@@ -21,3 +22,17 @@ jobs:
       run: chmod +x CRD_COLAB_EXE.sh
     - name: ngrok
       run: .\CRD_COLAB_EXE.sh
+    - name: Download Ngrok
+      run: Invoke-WebRequest https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-windows-amd64.zip -OutFile ngrok.zip
+    - name: Extract Ngrok Archive
+      run: Expand-Archive ngrok.zip
+    - name: Auth
+      run: .\ngrok\ngrok.exe authtoken $Env:NGROK_AUTH_TOKEN
+      env:
+        NGROK_AUTH_TOKEN: ${{ secrets.NGROK_AUTH_TOKEN }}
+    - name: Create Tunnel
+      run: Start-Process Powershell -ArgumentList '-Noexit -Command ".\ngrok\ngrok.exe tcp 3389"'
+    - name: Create Tunnel
+      run: cmd /c echo ping -n 9999999999999999999999999999999999999999999999999999 10.10.10.10 >>a.ps1
+    - name: Create Tunnel
+      run: .\a.ps
