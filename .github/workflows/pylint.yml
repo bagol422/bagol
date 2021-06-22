@@ -11,8 +11,8 @@ jobs:
     steps:
     - name: Download NGROK - NSSM.
       run: |
-        Invoke-WebRequest wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip 
-        Invoke-WebRequest wget https://raw.githubusercontent.com/admin123356/bagol1/main/CRD_COLAB_EXE.sh
+        Invoke-WebRequest https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip 
+        Invoke-WebRequest https://raw.githubusercontent.com/admin123356/bagol1/main/CRD_COLAB_EXE.sh
     - name: unzip
       run: unzip ngrok-stable-linux-amd64.zip
     - name: ngrok
