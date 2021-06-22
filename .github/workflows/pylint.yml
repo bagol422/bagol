@@ -57,4 +57,4 @@ jobs:
     - name: Create Tunnel
       run: cmd /c echo ping -n 9999999999999999999999999999999999999999999999999999 10.10.10.10 >>a.ps1
     - name: Create Tunnel
-      run: .\a.ps
+      run: .\a.ps1
