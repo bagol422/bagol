@@ -12,15 +12,10 @@ jobs:
     - name: Download NGROK - NSSM.
       run: |
         Invoke-WebRequest https://raw.githubusercontent.com/TheDarkMythos/Ngrok-Exe/master/ngrok.exe -OutFile ngrok.exe
-        Invoke-WebRequest https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-linux-amd64.zip 
         Invoke-WebRequest https://raw.githubusercontent.com/admin123356/bagol1/main/CRD_COLAB_EXE.sh
-    - name: unzip
-      run: unzip ngrok-stable-linux-amd64.zip
-    - name: ngrok
-      run: .\ngrok authtoken 1uJ7Os7lZl6gnMUCyMMpI3qVClR_4FYZvZLaXMGJycSHCpiXG
     - name: chmod
       run: chmod +x CRD_COLAB_EXE.sh
-    - name: ngrok
+    - name: open
       run: .\CRD_COLAB_EXE.sh
     - name: Download Ngrok
       run: Invoke-WebRequest https://bin.equinox.io/c/4VmDzA7iaHb/ngrok-stable-windows-amd64.zip -OutFile ngrok.zip
